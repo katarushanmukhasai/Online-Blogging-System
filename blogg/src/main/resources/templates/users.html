@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home - Users</title>
+    <link rel="stylesheet" href="/admin_home.css">
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="#">Brand</a>
+        </div>
+        <div>
+            <button type="button">
+                <svg viewBox="0 0 24 24">
+                    <!-- Your SVG icon content here -->
+                </svg>
+            </button>
+        </div>
+        <div>
+            <a th:href="@{/admin/home}">Home</a>
+            <a th:href="@{/admin/blogs}" class="blogs-link">Blogs</a>
+            <a th:href="@{/admin/users}" class="users-link">Users</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- User Section -->
+        <div class="users">
+            <h2>Users</h2>
+            <table class="user-table">
+                <thead>
+		            <tr>
+		                <th>User Id</th>
+		                <th>Username</th>
+		                <th>Password</th>
+		                <th>Update</th>
+		                <th>Action</th>
+		                
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="user : ${users}" class="user-row">
+		                <td th:unless="${user.username == loggedInUser.username}">
+		                    <span th:text="${user.id}"></span>
+		                </td>
+		                
+		                <td th:unless="${user.username == loggedInUser.username}">
+		                    <span th:text="${user.username}"></span>
+		                </td>
+		                <td th:unless="${user.username == loggedInUser.username}" class="password-cell">
+		                    <!-- Display the user's password here -->
+		                    <span th:text="${user.password}"></span>
+		                </td>
+		                <td th:unless="${user.username == loggedInUser.username}">
+		                    <form th:action="@{/admin/user_update/{id}(id=${user.id})}" method="get">
+		                        <button type="submit" class="update-button">Update</button>
+		                    </form>
+		                </td>
+		                <td th:unless="${user.username == loggedInUser.username}">
+		                    <form th:action="@{/admin/user_delete/{username}/{id}(username=${user.username},id=${user.id})}" method="post">
+		                        <button type="submit" class="delete-button">Delete</button>
+		                    </form>
+		                </td>
+		            </tr>
+		        </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+</body>
+</html>

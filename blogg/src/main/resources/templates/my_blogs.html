@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+    <link rel="stylesheet" href="/user_home.css">
+    <style>
+        body {
+            min-height: 100vh;
+            background-image:  url('https://i.postimg.cc/yYp28jQm/pexels-pixabay-36717.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0);
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        nav a:not(.active):hover {
+            color: #ffd700;
+        }
+
+        nav a.active {
+            color: #ffd700;
+        }
+
+        .welcome-message {
+            text-align: center;
+            margin-top: 10px;
+            color: #fff;
+            font-size: 24px;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 0.1px;
+            border-radius: 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 20px;
+            margin: 20px auto;
+            background-color: transparent;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .blogs {
+            flex: 1;
+            padding: 0 20px;
+            height: 600px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .blog-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .blog-card {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-title {
+            font-size: 30px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .blog-content {
+            text-align: center;
+        }
+
+        .blog-card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .accounts {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .user-link {
+            display: block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #333;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .user-link:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        section img#stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+
+</head>
+<section>
+
+<body>
+    <nav>
+        <div>
+            <a href="#">Brand</a>
+        </div>
+
+        <div>
+            <a href="/user/home" class="active">Home</a>
+            <a href="#">About us</a>
+        </div>
+    </nav>
+
+    <div class="welcome-message">
+        <p>Welcome <span th:text="${loggedInUser.username}"></span>!</p>
+    </div>
+
+    <div class="container">
+        <!-- Add the "Create Post" button here -->
+        <div class="create-post-button">
+            <button type="button" onclick="location.href='/user/create'">Create Post</button>
+        </div>
+
+        <div class="blogs">
+            <ul class="blog-list">
+                <li th:each="blog : ${blogs}" class="blog-card">
+                    <div class="blog-card-content">
+                        <h4 th:text="${blog.title}" class="blog-title"></h4>
+                        <p th:text="${blog.content}" class="blog-card"></p>
+                    </div>
+                    <div class="blog-card-footer">
+                        <p th:text="${blog.blogtype}" class="blog-blogtype"></p>
+                        <p th:text="${blog.username}" class="blog-username"></p>
+                        <!-- "Update" and "Delete" buttons -->
+                        <form th:action="@{/user/updateBlog/{username}/{authorid}(username=${blog.username},authorid=${blog.authorid})}" th:method="get">
+                            <button type="submit" class="update-blog-button">Update</button>
+                        </form>
+
+                        <form th:action="@{/user/deleteBlog/{username}/{authorid}(username=${blog.username},authorid=${blog.authorid})}" th:method="post">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" class="delete-blog-button">Delete</button>
+                        </form>
+                        <p th:text="${blog.date}" class="blog-date"></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="accounts">
+            <h2>Accounts</h2>
+            <ul class="user-list">
+                <li th:each="user : ${users}" class="user-item">
+                    <a th:unless="${user.username == loggedInUser.username}" th:href="@{/user/other-home/{username}(username=${user.username})}" th:text="${user.username}" class="user-link"></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Your footer content here -->
+    </footer>
+
+    <script>
+        // Get references to the elements
+        const stars = document.getElementById('stars');
+
+        // Add scroll event listener
+        window.addEventListener('scroll', function () {
+            // Get the current scroll position
+            let value = window.scrollY;
+
+            // Update element styles based on scroll position
+            stars.style.left = value * 0.25 + 'px';
+        });
+    </script>
+</body>
+    </section>
+</html>

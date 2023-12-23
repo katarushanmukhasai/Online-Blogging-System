@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Delete User</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="hidden"] {
+            display: none;
+        }
+
+        button[type="submit"] {
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #e60000;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Delete User</h1>
+
+    <p>Are you sure you want to delete the user with ID: <span th:text="${id}"></span> and Username: <span th:text="${username}"></span>?</p>
+
+    <form method="post" th:action="@{/user/deleteUser}">
+        <input type="hidden" id="id" name="id" th:value="${id}">
+        <input type="hidden" id="username" name="username" th:value="${username}">
+        <button type="submit">Delete</button>
+    </form>
+
+    <a href="">Back to User List</a>
+</body>
+
+</html>

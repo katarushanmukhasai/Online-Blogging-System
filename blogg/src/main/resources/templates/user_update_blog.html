@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(#2b1055, #7597de), url('https://drive.google.com/uc?export=view&id=1nHl2PZEhjGl18XyZYWnWloFciszXvpXh');
+            background-size: cover;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            opacity: 0.9;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        nav {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .blog-update {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+        }
+
+        label {
+            color: #2b1055;
+            font-weight: bold;
+        }
+
+        select,
+        input[type="text"],
+        textarea,
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .update-blog-button {
+            background-color: #2b1055;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .update-blog-button:hover {
+            background-color: #ffd700;
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 10px 20px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <!-- Navigation menu or header content here -->
+    </nav>
+
+    <div class="container">
+        <!-- Blog Update Form -->
+        <div class="blog-update">
+            <h2>Update Blog</h2>
+            <form action="/blog/admin/{username}/{authorid}" th:object="${blog}" method="post">
+                <input type="hidden" id="username" name="username" th:value="*{username}">
+                <input type="hidden" id="authorid" name="authorid" th:value="*{authorid}">
+                <label for="blogtype">Type:</label>
+                <select name="blogtype" id="blogtype" required="required">
+                    <option>Select a type</option>
+                    <option value="Food blogs">Food blogs</option>
+                    <option value="Travel blogs">Travel blogs</option>
+                    <option value="Health and fitness blogs">Health and fitness blogs</option>
+                    <option value="Personal blogs">Personal blogs</option>
+                    <option value="Sports blogs">Sports blogs</option>
+                </select><br><br>
+
+                <label for="title">Title:</label>
+                <input type="text" id="title" th:field="*{title}" /><br><br>
+
+                <label for="content">Content:</label>
+                <textarea id="content" th:field="*{content}"></textarea><br><br>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" th:field="*{date}" /><br><br>
+
+                <button type="submit" class="update-blog-button">Update Blog</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+</body>
+
+</html>

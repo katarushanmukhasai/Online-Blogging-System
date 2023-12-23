@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home</title>
+    <link rel="stylesheet" href="/admin_home.css">
+    <style>
+        /* Add your CSS styles here */
+        body {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.597),rgba(0, 0, 0, 0.499)),url('https://i.postimg.cc/L5scbMZg/pexels-anete-lusina-5240547.jpg');
+            background-size: cover;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        /* Styling the navigation bar */
+        nav {
+            background-color: #333; /* Background color */
+            color: white; /* Text color */
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none; /* Remove underlines from links */
+            color: white; /* Text color for links */
+            margin: 0 10px;
+        }
+
+        nav button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Styling the welcome message */
+        .welcome-message {
+            background-color: #F0F0F0;
+            margin-top: 60px;
+            padding: 15px;
+            text-align: center;
+            opacity: 0.5;
+            font-size: 26px;
+            margin-left: 100px;
+        
+            width: 80%;
+        }
+
+        /* Styling the footer */
+        
+    </style>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="#">Brand</a>
+        </div>
+        <div>
+            <button type="button">
+                <svg viewBox="0 0 24 24">
+                    <!-- Your SVG icon content here -->
+                </svg>
+            </button>
+        </div>
+        <div>
+            <a th:href="@{/admin/home}">Home</a>
+            <a th:href="@{/admin/announce}">Announcements</a>
+            <a th:href="@{/admin/admins}">Admins</a>
+            <a th:href="@{/admin/blogs}" class="blogs-link">Blogs</a>
+            <a th:href="@{/admin/users}" class="users-link">Users</a>
+        </div>
+    </nav>
+    <br>
+    <div class="welcome-message">
+        <p style="text-align: center;">Welcome Admin!</p>
+    </div>
+
+    <footer>
+        <!-- Your footer content here -->
+    </footer>
+</body>
+</html>

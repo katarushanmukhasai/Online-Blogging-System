@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Blogging Login Page</title>
+  <link rel="stylesheet" href="/login.css">
+
+</head>
+<body>
+
+<div class="form-wrapper">
+  <h2>Sign In</h2>
+  <form th:action="@{/admin/login}" method="post">
+    <div class="form-control">
+      <input type="text" name="username" required>
+      <label>User Name</label>
+    </div>
+    <div class="form-control">
+      <input type="password" name="password" required>
+      <label>Password</label>
+    </div>
+    <button type="submit" value="Login" >Sign In</button>
+    <div class="form-help">
+      <div class="remember-me">
+        <input type="checkbox" id="remember-me">
+        <label for="remember-me">Remember me</label>
+      </div>
+      <a href="#">Need help?</a>
+    </div>
+  </form>
+  <p>New to Blogging? <a href="signup.html">Sign up now</a></p>
+</div>  
+</body>
+</html>

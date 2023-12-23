@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home - Admins</title>
+    <link rel="stylesheet" href="/admin_home.css"> <!-- Assuming you have a CSS file for styling -->
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="#">Brand</a>
+        </div>
+        <div>
+            <button type="button">
+                <svg viewBox="0 0 24 24">
+                    <!-- Your SVG icon content here -->
+                </svg>
+            </button>
+        </div>
+        <div>
+            <a th:href="@{/admin/home}">Home</a>
+            <a th:href="@{/admin/blogs}" class="blogs-link">Blogs</a>
+            <a th:href="@{/admin/users}" class="users-link">Users</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Add a button only accessible to admin users -->
+        <div th:if="${adms == 'admin'}">
+            <button class="admin-button"><a th:href="@{/admin/create}" style="text-decoration: none;color: white;">New Admin</a></button>
+        </div>
+
+        <!-- Admin Section -->
+        <div class="admins">
+            <h2>Admins</h2>
+            <table class="admin-table">
+                <thead>
+		            <tr>
+		                <th>Admin ID</th>
+		                <th>Admin Name</th>
+		                <!-- Add the Password header here for admin users -->
+		                <th th:if="${adms == 'admin'}">Password</th>
+		                <th>Update</th>
+		                <th>Delete</th>
+		            </tr>
+		        </thead>
+		        <tbody>
+		            <tr th:each="admin : ${admins}" class="admin-row" th:unless="${admin.username == adms}">
+		                <td><span th:text="${admin.id}"></span></td>
+		                <td><span th:text="${admin.username}"></span></td>
+		                <!-- Display the Password cell for admin users -->
+		                <td th:if="${adms == 'admin'}"><span th:text="${admin.password}"></span></td>
+		                <td>
+		                    <!-- Conditionally display update and delete buttons for admins -->
+		                    <div th:if="${adms == 'admin'}">
+		                        <form th:action="@{/admin/updateAdmin/{id}(id=${admin.id})}" method="get">
+			                        <button type="submit" class="">Update</button>
+			                    </form>
+		                   </div>
+		                
+		                    <!-- Optionally show a message for non-admin users -->
+		                    <div th:unless="${adms == 'admin'}">
+		                        <span>You do not have permission to perform these actions.</span>
+		                    </div>
+		                </td>
+		                <td>
+		                <div th:if="${adms == 'admin'}">
+		                       <form th:action="@{/admin/deleteAdmin/{username}/{id}(username=${admin.username},id=${admin.id})}" method="post">
+			                        <button type="submit" class="delete-button">Delete</button>
+			                    </form>
+		                   </div>
+		                    <!-- Optionally show a message for non-admin users -->
+		                    <div th:unless="${adms == 'admin'}">
+		                        <span>You do not have permission to perform these actions.</span>
+		                    </div>
+		                </td>
+		            </tr>
+		        </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+</body>
+</html>

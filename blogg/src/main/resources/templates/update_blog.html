@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(#2b1055, #7597de), url('https://drive.google.com/uc?export=view&id=1nHl2PZEhjGl18XyZYWnWloFciszXvpXh');
+            background-size: cover;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            opacity: 0.9;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            position: relative;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+        }
+
+        label {
+            color: #2b1055;
+            font-weight: bold;
+        }
+
+        select,
+        input[type="text"],
+        textarea,
+        input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #2b1055;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #ffd700;
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        section img#stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<section>
+        <img src="https://drive.google.com/uc?export=view&id=1nHl2PZEhjGl18XyZYWnWloFciszXvpXh" id="stars">
+<body>
+    
+    <h1>Update Blog</h1>
+    <form method="post" action="/blog/{username}/{authorid}">
+        <input type="hidden" id="username" name="username" th:value="${username}">
+        <input type="hidden" id="authorid" name="authorid" th:value="${authorid}">
+
+        <label for="blogtype">Type:</label><br>
+        <select name="blogtype" id="blogtype" required="required">
+            <option>Select a type</option>
+            <option value="Food blogs">Food blogs</option>
+            <option value="Travel blogs">Travel blogs</option>
+            <option value="Health and fitness blogs">Health and fitness blogs</option>
+            <option value="Personal blogs">Personal blogs</option>
+            <option value="Sports blogs">Sports blogs</option>
+        </select><br><br>
+
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br><br>
+
+        <label for="content">Content:</label><br>
+        <textarea id="content" name="content"></textarea><br><br>
+
+        <label for="date">Date:</label><br>
+        <input type="date" id="date" name="date"><br><br>
+
+        <input type="submit" value="Update Blog">
+    </form>
+</body>
+</section>
+</html>

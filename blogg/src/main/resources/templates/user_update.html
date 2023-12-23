@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Update</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label,
+        input {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>User Update</h2>
+
+    <!-- Display user information -->
+    <form th:object="${user}" th:action="@{/user/{id}(id=${user.id})}" method="post">
+        <input type="hidden" id="id" th:field="*{id}">
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" th:field="*{username}" required><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" th:field="*{email}" required><br>
+
+        <label for="password">Password:</label>
+        <input type="text" id="password" th:field="*{password}" required><br>
+
+        <button type="submit">Update User</button>
+    </form>
+
+    <!-- Add a link to go back to the user list or another page as needed -->
+    <a href="">Back to User List</a>
+</body>
+
+</html>

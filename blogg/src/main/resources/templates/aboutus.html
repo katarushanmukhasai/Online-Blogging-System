@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>About us</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <style>
+        /* Add custom styles for the image */
+        .box_img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Additional custom styles for the About Us section */
+        .about_section {
+            padding: 80px 0;
+            background: linear-gradient(#2b1055, #7597de),
+                url('https://drive.google.com/uc?export=view&id=1nHl2PZEhjGl18XyZYWnWloFciszXvpXh');
+            background-size: cover;
+            background-attachment: fixed;
+            color: #000; /* Text color changed to black */
+        }
+
+        .row {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .detail-box {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .heading_container h2 {
+            color: #007bff;
+        }
+
+        .detail_p_mt {
+            margin-top: 20px;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        a:hover {
+            text-decoration: none;
+            background-color: #0056b3;
+        }
+
+        /* Responsive styles for smaller screens */
+        @media (max-width: 767px) {
+            .col-md-5 {
+                order: 2;
+            }
+
+            .col-md-6 {
+                order: 1;
+            }
+
+            .img-box {
+                margin-top: 20px;
+            }
+        }
+        /* Add this CSS for the navbar */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: transparent; /* Set your desired background color */
+}
+
+.logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+}
+
+ul li {
+    margin-right: 20px; /* Adjust spacing between list items */
+}
+
+ul li:last-child {
+    margin-right: 0; /* Remove margin for the last list item */
+}
+
+ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+ul li a.active {
+    font-weight: bold;
+    color: #ffd700; /* Change color for active link */
+}
+
+ul li a:hover {
+    color: #ffd700; /* Change color on hover */
+}
+        
+        /* Add this CSS for the navbar */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 40px;
+    background-color: transparent;
+    margin-top: -90px;
+    margin-bottom: 40px;
+}
+
+.logo {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+ul li {
+    margin: 0 20px;
+}
+
+ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+ul li a.active {
+    font-weight: bold;
+}
+        
+    </style>
+    
+</head>
+
+<body>
+
+    <section class="about_section">
+    <header>
+      <a href="/" class="logo">Back</a>
+        <ul>
+            <li><a href="/" class="active">Home</a></li>
+            <li><a href="/user/register">Sign up</a></li>
+            <li><a href="/admin/login">Admin</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </header>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5 offset-md-1">
+                    <div class="detail-box pr-md-2">
+                        <div class="heading_container">
+                            <h2 class="">
+                                About Us
+                            </h2>
+                        </div>
+                        <p class="detail_p_mt">
+                            <p> Welcome to Blogging Spot, where creativity and community intersect. We're a platform that celebrates individual expression, inviting writers, bloggers, and content creators to share their unique stories and insights. Our user-friendly interface ensures a seamless blogging experience, catering to both newcomers and seasoned writers.</p>
+                            <p>With a commitment to creative freedom and inclusivity, we empower our members to connect, inspire, and learn from one another. Our diverse range of content covers an array of interests, providing a safe space for constructive discussions and personal growth. Join our vibrant community today and embark on a journey of self-discovery and connection. Your voice matters, and at Blogging Spot, it's heard and valued.</p>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 px-0">
+                    <div class="img-box">
+                        <img src="https://i.postimg.cc/c4jYrbfD/aboutus.webp" class="box_img" alt="about img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

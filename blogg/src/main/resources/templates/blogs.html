@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home - Blogs</title>
+    <link rel="stylesheet" href="/admin_home.css">
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="#">Brand</a>
+        </div>
+        <div>
+            <button type="button">
+                <svg viewBox="0 0 24 24">
+                    <!-- Your SVG icon content here -->
+                </svg>
+            </button>
+        </div>
+        <div>
+            <a th:href="@{/admin/home}">Home</a>
+            <a th:href="@{/admin/blogs}" class="blogs-link">Blogs</a>
+            <a th:href="@{/admin/users}" class="users-link">Users</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <!-- Blog Section -->
+        <div class="blogs">
+            <h2>Blogs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Blog</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Author</th>
+                        <th>Date</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="blog : ${blogs}">
+                        <td th:text="${blog.blogtype}"></td>
+                        <td th:text="${blog.title}"></td>
+                        <td th:text="${blog.content}"></td>
+                        <td th:text="${blog.username}"></td>
+                        <td th:text="${blog.date}"></td>
+                        <td>
+                            <form th:action="@{/admin/updateBlog/{authorid}(authorid=${blog.authorid})}" th:method="get">
+                                <button type="submit" class="update-blog-button">Update</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form th:action="@{/admin/deleteBlog/{username}/{authorid}(username=${blog.username},authorid=${blog.authorid})}" th:method="post">
+                                <button type="submit" class="delete-blog-button">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Footer content here -->
+    </footer>
+</body>
+</html>

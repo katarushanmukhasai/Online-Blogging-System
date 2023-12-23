@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Comment</title>
+    <style>
+          body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.postimg.cc/dVN7nhsR/pexels-rasik-1416900.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav {
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5px;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+nav a:not(.active):hover {
+    color: #ffd700;
+}
+
+nav a.active {
+    color: #ffd700;
+}
+
+        h1 {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .blog-card-content, .blog-card-footer, .comment-box {
+            background-color: rgba(255, 255, 255, 0.5); /* Adjusted transparency */
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-title {
+            font-size: 24px;
+            text-align: center;
+            margin: 0;
+            color:black;
+            font-weight: bold; /* Made the title bold */
+        }
+
+        .blog-card {
+            font-size: 16px;
+            color: black;
+            margin-top: 10px;
+            margin-left: 30px;
+        }
+
+		.footer{
+			margin-top:50px;
+			margin-left: 30px;
+			display: flex;
+			justify-content: space-between;
+		}
+        .blog-blogtype, .blog-username, .blog-date {
+            font-size: 15px;
+            color:black;
+            margin: 0;
+        }
+
+        .comment-box {
+            background-color: rgba(255, 255, 255, 0.5); /* Adjusted transparency */
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .comment-card {
+            background-color: rgba(249, 249, 249, 0.5); /* Adjusted transparency */
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            margin: 20px;
+            width: 50%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        textarea {
+            width: 100%;
+            padding-right: 10px;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold; /* Made the button text bold */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+	 <nav>
+		 
+		 
+		 
+    <div>
+        <a href="#">Brand</a>
+    </div>
+    <div>
+        <a href="/user/home" class="active">Home</a>
+        <a th:href="@{/user/my-blogs}">My Blogs</a>
+        <a th:href="@{/user/profile}">Profile</a>
+    </div>
+</nav><br>
+   <div class="main">
+	
+    <div class="blog-card-content">
+        <h4 th:text="${blog.title}" class="blog-title"></h4>
+        <p th:text="${blog.content}" class="blog-card"></p>
+    
+    <div class="footer">
+        <p th:text="${blog.blogtype}" class="blog-blogtype"></p>
+        <p th:text="${blog.username}" class="blog-username"></p>
+        <p th:text="${blog.date}" class="blog-date"></p>
+    </div>
+    </div>
+    
+    <div class="comment-box">
+        <div th:each="comment : ${comments}" class="comment-card">
+            <p th:text="${comment.comment}"></p>
+        </div>
+    </div>
+    <form action="/comment/createcomment" method="post">
+        <input type="hidden" id="blogid" name="blogid" th:value="${blog.authorid}" />
+        <label for="comment">Comment:</label><br>
+        <textarea id="comment" name="comment" rows="5" cols="50" required></textarea><br><br>
+        <button type="submit">Create Comment</button>
+    </form>	   </div>
+	 </body>
+</html>

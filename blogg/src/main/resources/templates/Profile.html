@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <style>
+        /* Add your CSS styles here to format the profile */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-image: url('https://i.postimg.cc/9fphMJPp/pexels-petri-r-4930548.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            overflow-x: hidden;
+            opacity: 0.9;
+            color: #000;
+        }
+
+        .profile-card {
+            width: 80%;
+            max-width: 600px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: left;
+            margin-left: 450px;
+            margin-top: 100px;
+        }
+
+        .profile-details {
+            flex: 1 ;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        th {
+            text-align: left;
+            padding: 10px;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        .update-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .update-button:hover {
+            background-color: #0056b3;
+        }
+
+        section {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        section img#stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<section>
+    <img src="https://i.postimg.cc/9fphMJPp/pexels-petri-r-4930548.jpg" id="stars">
+    <body>
+        <div class="profile-card">
+            <form th:action="@{/profile/update/{username}(username=${username})}" method="post" class="profile-details">
+                <h2>Profile</h2>
+
+                <table>
+                    <tr>
+                        <th>Username:</th>
+                        <td><span th:text="${username}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Full Name:</th>
+                        <td><span th:text="${profile?.fullName != null ? profile.fullName : '-'}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Email:</th>
+                        <td><span th:text="${profile?.emailAddress != null ? profile.emailAddress : '-'}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Phone Number:</th>
+                        <td><span th:text="${profile?.phoneNumber != null ? profile.phoneNumber : '-'}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Address:</th>
+                        <td><span th:text="${profile?.address != null ? profile.address : '-'}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Social Media Links:</th>
+                        <td><span th:text="${profile?.socialMediaLinks != null ? profile.socialMediaLinks : 'NA'}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>About Me:</th>
+                        <td><span th:text="${profile?.aboutMe != null ? profile.aboutMe : '-'}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Date of Birth:</th>
+                        <td><span th:text="${profile?.dateOfBirth != null ? profile.dateOfBirth : '-'}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Gender:</th>
+                        <td><span th:text="${profile?.gender != null ? profile.gender : '-'}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Location:</th>
+                        <td><span th:text="${profile != null ? profile.location : '-'}"></span></td>
+                    </tr>
+                    <tr>
+                        <th>Password:</th>
+                        <td><span th:text="${password}"></span></td>
+                    </tr>
+                </table>
+
+                <button type="submit" class="update-button">Update Profile</button>
+            </form>
+        </div>
+    </body>
+</section>
+
+</html>

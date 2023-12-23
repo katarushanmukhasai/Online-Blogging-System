@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Admin</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #2980B9, #6DD5FA);
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    h2 {
+        font-size: 28px;
+        color: #fff;
+        margin-bottom: 20px;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 400px; /* Increase the width as needed */
+        max-width: 80%; /* Limit to 80% of the viewport width */
+    }
+
+    label {
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-bottom: 2px solid #2980B9;
+        margin-bottom: 20px;
+        border-radius: 0;
+        transition: border-bottom 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        border-bottom: 2px solid #6DD5FA;
+    }
+
+    button {
+        background: #2980B9;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    button:hover {
+        background: #3C8ACC;
+    }
+</style>
+
+</head>
+<body>
+    <h2>Create Admin</h2>
+
+    <!-- Create Admin Form -->
+    <form th:action="@{/admin/create}" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" required />
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required />
+        </div>
+
+        <button type="submit">Create Admin</button>
+    </form>
+</body>
+</html>

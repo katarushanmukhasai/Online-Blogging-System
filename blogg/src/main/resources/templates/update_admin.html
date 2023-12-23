@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Update</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            color: #007bff;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Admin Update</h2>
+
+    <!-- Display user information -->
+    <form th:object="${admin}" th:action="@{/admin/{id}(id=${admin.id})}" method="post">
+        <input type="hidden" id="id" th:field="*{id}">
+
+        <label for="username">Username:</label>
+        <input type="text" id="username" th:field="*{username}" required><br>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" th:field="*{email}" required><br>
+
+        <label for="password">Password:</label>
+        <input type="text" id="password" th:field="*{password}" required><br>
+
+        <button type="submit">Update Admin</button>
+    </form>
+
+    <!-- Add a link to go back to the user list or another page as needed -->
+    <a href="/admin/admins">Back to Admin List</a>
+</body>
+
+</html>
